@@ -7,7 +7,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import eif.viko.lt.vo.musicplayer.data.repository.FirebaseRepositoryImpl
 import eif.viko.lt.vo.musicplayer.domain.repository.FirebaseRepository
-import eif.viko.lt.vo.musicplayer.domain.use_case.firestore.GetSongsUseCase
+import eif.viko.lt.vo.musicplayer.domain.use_case.firestore.GetTracksUseCase
 import javax.inject.Singleton
 
 @Module
@@ -28,8 +28,8 @@ object FirebaseModule {
 
     @Provides
     @Singleton
-    fun provideSongsUseCase(repository: FirebaseRepository): GetSongsUseCase{
-        return GetSongsUseCase(repository)
+    fun provideSongsUseCase(repository: FirebaseRepository): GetTracksUseCase{
+        return GetTracksUseCase(repository)
     }
 
 

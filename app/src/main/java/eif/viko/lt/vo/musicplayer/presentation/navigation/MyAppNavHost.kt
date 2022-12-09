@@ -12,6 +12,7 @@ import com.spotify.protocol.types.Artist
 import eif.viko.lt.vo.musicplayer.domain.util.Route
 import eif.viko.lt.vo.musicplayer.presentation.ui.PlaylistScreen
 import eif.viko.lt.vo.musicplayer.presentation.ui.playlist.SongScreen
+import eif.viko.lt.vo.musicplayer.presentation.ui.search.SearchScreen
 
 
 @Composable
@@ -50,7 +51,7 @@ fun MyAppNavHost (
         composable(
             route = Route.SEARCH_SCREEN
         ){
-            PlaylistScreen(navController = navController)
+            SearchScreen(navController = navController)
         }
         composable(
             route = Route.LIBRARY_SCREEN

@@ -57,7 +57,7 @@ fun SongScreen (
             Text(
                 buildAnnotatedString {
                     withStyle(
-                        style = SpanStyle(fontWeight = FontWeight.W900, color = Color(0xFF4552B8))
+                        style = SpanStyle(fontWeight = FontWeight.W900, color = Color(0xFFC9CEF1))
                     ) {
                         append(name.toString())
                     }

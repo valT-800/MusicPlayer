@@ -1,7 +1,9 @@
 package eif.viko.lt.vo.musicplayer.presentation.ui
 
 
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import eif.viko.lt.vo.musicplayer.domain.model.Track
@@ -26,8 +28,8 @@ fun PlaylistScreen(
     ListItem(
         items = state,
         onItemClick = {
-            val encodedImageUrl = URLEncoder.encode(it.album.images[0].url, StandardCharsets.UTF_8.toString())
-            navController.navigate(Route.SONG_SCREEN+"/${it.name}/${it.preview_url}/$encodedImageUrl/${it.artist.name}")
+            val encodedImageUrl = URLEncoder.encode(it.album?.images?.get(0)?.url , StandardCharsets.UTF_8.toString())
+            navController.navigate(Route.SONG_SCREEN+"/${it.name}/${it.preview_url}/$encodedImageUrl/${it.artists?.get(0)?.name}")
             track = it
             /*playerState?.setMediaItem(MediaItem.Builder().setUri(it.songUrl).setTag(it.title).build())
             playerState?.prepare()
@@ -35,11 +37,13 @@ fun PlaylistScreen(
             playerState?.playWhenReady = true*/
         }
     )
-    Player(//exoPlayer = playerState,
-        title = track?.name,
-        songUrl = track?.preview_url
-    )
+    if (track!= null) {
 
+        Player(//exoPlayer = playerState,
+            title = track?.name,
+            songUrl = track?.preview_url
+        )
+    }
 
 }
 

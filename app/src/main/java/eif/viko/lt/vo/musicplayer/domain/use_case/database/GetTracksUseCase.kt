@@ -7,10 +7,10 @@ import eif.viko.lt.vo.musicplayer.domain.repository.FirebaseRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class GetItemsUseCase @Inject constructor(
+class GetTracksUseCase @Inject constructor(
     private val repository: DatabaseRepository
 ) {
-    operator fun invoke(): Flow<List<Item>> {
-        return repository.getItems()
+    operator fun invoke(): Flow<List<Track>> {
+        return repository.getTracks()
     }
 }

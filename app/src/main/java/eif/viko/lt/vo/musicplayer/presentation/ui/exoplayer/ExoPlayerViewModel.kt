@@ -4,13 +4,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import eif.viko.lt.vo.musicplayer.domain.use_case.exoplayer.GetExoPlayerUseCase
-import eif.viko.lt.vo.musicplayer.domain.use_case.firestore.GetSongsUseCase
-import eif.viko.lt.vo.musicplayer.presentation.ui.playlist.PlaylistState
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @HiltViewModel
@@ -35,7 +30,7 @@ class ExoPlayerViewModel @Inject constructor(
         getExoPlayerUseCase().also {
             //it?.prepare()
             //it?.play()
-            it?.playWhenReady = false
+            it.playWhenReady = false
             state = state.copy(exoPlayer = it)
         }
     }

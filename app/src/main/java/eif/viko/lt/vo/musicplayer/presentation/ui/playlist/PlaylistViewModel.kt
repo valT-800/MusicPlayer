@@ -6,18 +6,16 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import eif.viko.lt.vo.musicplayer.domain.use_case.database.GetItemsUseCase
+import eif.viko.lt.vo.musicplayer.domain.use_case.database.GetTracksUseCase
 import eif.viko.lt.vo.musicplayer.domain.use_case.exoplayer.GetExoPlayerUseCase
-import eif.viko.lt.vo.musicplayer.domain.use_case.firestore.GetSongsUseCase
-//import eif.viko.lt.vo.musicplayer.domain.use_case.GetMusicPlayerSongsUseCase
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 @HiltViewModel
 class PlaylistViewModel @Inject constructor(
-    private val getSongsUseCase: GetSongsUseCase,
+    private val getTracksUseCase: GetTracksUseCase,
     private val getExoPlayerUseCase: GetExoPlayerUseCase,
-    private val getItemsUseCase: GetItemsUseCase,
+    //private val getItemsUseCase: GetItemsUseCase,
 ):ViewModel(){
 
     var state by mutableStateOf(PlaylistState())
@@ -30,13 +28,13 @@ class PlaylistViewModel @Inject constructor(
         data class ShowSnackbar(val message: String): UIEvent()
     }*/
     init {
-        getSongs()
+        getTracks()
         getExoPlayer()
-        getItems()
+        //getItems()
     }
 
-    private fun getSongs(){
-        getSongsUseCase().onEach {
+    private fun getTracks(){
+        getTracksUseCase().onEach {
             state = state.copy(tracks = it)
         }.launchIn(viewModelScope)
     }
@@ -44,15 +42,9 @@ class PlaylistViewModel @Inject constructor(
         getExoPlayerUseCase().also {
             //it?.prepare()
             //it?.play()
-            it?.playWhenReady = false
+            it.playWhenReady = false
             state = state.copy(exoPlayer = it)
         }
-    }
-
-    private fun getItems(){
-        getItemsUseCase().onEach {
-            state = state.copy(items = it)
-        }.launchIn(viewModelScope)
     }
 //.addMediaItem(MediaItem.Builder().setUri(it.songUrl).setTag(it.title).build())
 

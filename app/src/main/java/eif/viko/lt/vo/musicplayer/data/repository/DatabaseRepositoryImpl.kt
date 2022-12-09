@@ -1,28 +1,35 @@
 package eif.viko.lt.vo.musicplayer.data.repository
 
-import android.content.ContentValues.TAG
+
 import android.util.Log
-import androidx.compose.runtime.snapshotFlow
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.getValue
+
 import com.google.firebase.database.ktx.snapshots
+import com.google.firebase.firestore.util.Assert
 import eif.viko.lt.vo.musicplayer.domain.model.Item
+import eif.viko.lt.vo.musicplayer.domain.model.Track
 import eif.viko.lt.vo.musicplayer.domain.repository.DatabaseRepository
+
 import kotlinx.coroutines.flow.*
+import java.util.*
 import javax.inject.Inject
+import kotlin.collections.ArrayList
 
 class DatabaseRepositoryImpl @Inject constructor(
     private val reference: DatabaseReference
 ) : DatabaseRepository {
-    override fun getItems(): Flow<List<Item>> {
-
-        reference.child("items").snapshots.mapNotNull {
-            for (snapshot in it.children){
-                    it.getValue(Item::class.java)
+    override fun getTracks(): Flow<List<Track>> {
+        val items = ArrayList<Track>()
+        reference.child("tracks").snapshots.map{
+            for (snapshot in it.children) {
+               val item = snapshot.getValue(Track::class.java)
+                if (item != null) {
+                    items.add(item)
                 }
+            }
         }
+        val tracks = items.toList()
+        return flow { emit(tracks) }
+    }
 }
 

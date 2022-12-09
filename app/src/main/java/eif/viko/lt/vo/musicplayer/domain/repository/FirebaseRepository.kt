@@ -4,5 +4,5 @@ import eif.viko.lt.vo.musicplayer.domain.model.Track
 import kotlinx.coroutines.flow.Flow
 
 interface FirebaseRepository {
-    fun getSongs(): Flow<List<Track>>
+    fun getTracks(): Flow<List<Track>>
 }

@@ -12,7 +12,7 @@ import javax.inject.Inject
 class FirebaseRepositoryImpl @Inject constructor(
     private val firestore: FirebaseFirestore
 ) : FirebaseRepository {
-    override fun getSongs(): Flow<List<Track>> {
+    override fun getTracks(): Flow<List<Track>> {
         return try {
             return firestore
                 .collection("songs")

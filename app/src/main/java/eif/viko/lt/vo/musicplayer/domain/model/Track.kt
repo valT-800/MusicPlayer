@@ -4,13 +4,11 @@ import android.net.Uri
 import android.support.v4.media.MediaMetadataCompat
 
 data class Track (
-    val name: String = "",
-    val preview_url: String = "",
-    val imageUrl: String = "",
-    val artist: Artist,
+    val album: Album?,
+    val artists: List<Artist>?,
     val duration_ms: Int = 0,
-    val uri: Uri?,
     val href: String = "",
-    val album: Album
-
+    val id: Int =0,
+    val name: String = "",
+    val preview_url: String = ""
     )

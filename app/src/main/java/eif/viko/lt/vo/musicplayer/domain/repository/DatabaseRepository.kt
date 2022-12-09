@@ -1,8 +1,8 @@
 package eif.viko.lt.vo.musicplayer.domain.repository
 
-import eif.viko.lt.vo.musicplayer.domain.model.Item
+import eif.viko.lt.vo.musicplayer.domain.model.Track
 import kotlinx.coroutines.flow.Flow
 
 interface DatabaseRepository {
-    fun getItems(): Flow<List<Item>>
+    fun getTracks(): Flow<List<Track>>
 }
