@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "512700464489",
+    "firebase_url": "https://music-4923a-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "music-4923a",
+    "storage_bucket": "music-4923a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:512700464489:android:346e20941c4eb82c5151f8",
+        "android_client_info": {
+          "package_name": "com.plcoding.spotifycloneyt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "512700464489-6tdamraemjsl44ro7rooknv2qconmpo5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkzM-D1CP9dA8f0H8lJd45bWCoh-hilow"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "512700464489-6tdamraemjsl44ro7rooknv2qconmpo5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:512700464489:android:6d4b2236f7f697b35151f8",
+        "android_client_info": {
+          "package_name": "eif.viko.lt.vo.music"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "512700464489-6tdamraemjsl44ro7rooknv2qconmpo5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkzM-D1CP9dA8f0H8lJd45bWCoh-hilow"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "512700464489-6tdamraemjsl44ro7rooknv2qconmpo5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:512700464489:android:9aa7557d2c0a64965151f8",
+        "android_client_info": {
+          "package_name": "eif.viko.lt.vo.musicplayer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "512700464489-6tdamraemjsl44ro7rooknv2qconmpo5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkzM-D1CP9dA8f0H8lJd45bWCoh-hilow"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "512700464489-6tdamraemjsl44ro7rooknv2qconmpo5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

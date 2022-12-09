@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MusicPlayer</string>
+    <string name="CLIENT_ID">c56af55b9a38455684e6e706dbbcdb0a</string>
+    <string name="REDIRECT_URI">http://localhost:8080/callback</string>
+</resources>
