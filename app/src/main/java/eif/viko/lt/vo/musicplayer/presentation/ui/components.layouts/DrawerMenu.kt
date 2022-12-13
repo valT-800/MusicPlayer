@@ -35,7 +35,6 @@ fun DrawerBody(
     itemTextStyle: TextStyle = TextStyle(fontSize = 18.sp),
     onItemClick: (MenuItem) -> Unit
 ) {
-    // Text(text = "waea: ${items}")
 
     LazyColumn(modifier) {
         items(items) { item ->

@@ -6,8 +6,5 @@ import eif.viko.lt.vo.musicplayer.domain.model.Track
 
 data class PlaylistState (
     val tracks: List<Track> = emptyList(),
-    val items: List<Item> = emptyList(),
-    val exoPlayer: ExoPlayer? = null,
-    //val isLoading: Boolean = false,
-    //val error: String? = null
+    //val exoPlayer: ExoPlayer? = null,
     )

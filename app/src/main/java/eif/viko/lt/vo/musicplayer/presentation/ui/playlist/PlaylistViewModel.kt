@@ -14,9 +14,9 @@ import javax.inject.Inject
 @HiltViewModel
 class PlaylistViewModel @Inject constructor(
     private val getTracksUseCase: GetTracksUseCase,
-    private val getExoPlayerUseCase: GetExoPlayerUseCase,
+    //private val getExoPlayerUseCase: GetExoPlayerUseCase,
     //private val getItemsUseCase: GetItemsUseCase,
-):ViewModel(){
+):ViewModel() {
 
     var state by mutableStateOf(PlaylistState())
         private set
@@ -29,47 +29,47 @@ class PlaylistViewModel @Inject constructor(
     }*/
     init {
         getTracks()
-        getExoPlayer()
+        //getExoPlayer()
         //getItems()
     }
 
-    private fun getTracks(){
+    private fun getTracks() {
         getTracksUseCase().onEach {
             state = state.copy(tracks = it)
         }.launchIn(viewModelScope)
     }
-    private fun getExoPlayer(){
-        getExoPlayerUseCase().also {
-            //it?.prepare()
-            //it?.play()
-            it.playWhenReady = false
-            state = state.copy(exoPlayer = it)
-        }
+/*private fun getExoPlayer(){
+    getExoPlayerUseCase().also {
+        //it?.prepare()
+        //it?.play()
+        it.playWhenReady = false
+        state = state.copy(exoPlayer = it)
     }
+}
 //.addMediaItem(MediaItem.Builder().setUri(it.songUrl).setTag(it.title).build())
 
-    /*private fun  getSongs() {
-        getMusicPlayerSongsUseCase().onEach { result ->
-            state = when (result){
-                is Resource.Success -> {
-                    state.copy(
-                        songs = result.data ?: emptyList(),
-                        isLoading = false
-                    )
-                }
-                is Resource.Error -> {
-                    state.copy(
-                        songs = result.data ?: emptyList(),
-                        isLoading = false
-                    )
-                }
-                is Resource.Loading -> {
-                    state.copy(
-                        songs = result.data ?: emptyList(),
-                        isLoading = true
-                    )
-                }
+private fun  getSongs() {
+    tMusicPlayerSongsUseCase().onEach { result ->
+        state = when (result){
+            is Resource.Success -> {
+                state.copy(
+                    songs = result.data ?: emptyList(),
+                    isLoading = false
+                )
             }
-        }.launchIn(viewModelScope)
-    }*/
+            is Resource.Error -> {
+                state.copy(
+                    songs = result.data ?: emptyList(),
+                    isLoading = false
+                )
+            }
+            is Resource.Loading -> {
+                state.copy(
+                    songs = result.data ?: emptyList(),
+                    isLoading = true
+                )
+            }
+        }
+    }.launchIn(viewModelScope)
+}*/
 }

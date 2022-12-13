@@ -24,17 +24,16 @@ import eif.viko.lt.vo.musicplayer.presentation.ui.playlist.PlaylistViewModel
 
 @Composable
 fun Player(
-    //exoPlayer: ExoPlayer? = null,
     viewModel: ExoPlayerViewModel = hiltViewModel(),
-    title: String?,
+    name: String?,
     songUrl: String?
 ){
-    var exoPlayer = viewModel.state.exoPlayer
-
-    exoPlayer?.setMediaItem(MediaItem.Builder().setUri(songUrl).setTag(title).build())
-    exoPlayer?.prepare()
-    exoPlayer?.play()
-    exoPlayer?.playWhenReady = true
+    if(songUrl!=null) {
+        val exoPlayer = viewModel.state.exoPlayer
+        exoPlayer?.setMediaItem(MediaItem.Builder().setUri(songUrl).setTag(name).build())
+        exoPlayer?.prepare()
+        exoPlayer?.play()
+        exoPlayer?.playWhenReady = true
         Column(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Bottom,
@@ -42,27 +41,31 @@ fun Player(
         ) {
 
             Row {
-                // IconButton for Start Action
-                IconButton(onClick = { exoPlayer?.playWhenReady = true }) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.ic_play),
-                        contentDescription = "",
-                        Modifier.size(50.dp)
-                    )
-                }
+                if (exoPlayer?.playWhenReady == false) {
+                    // IconButton for Start Action
+                    IconButton(onClick = { exoPlayer?.playWhenReady = true }) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_play),
+                            contentDescription = "",
+                            Modifier.size(50.dp)
+                        )
+                    }
+                } else {
 
-                // IconButton for Pause Action
-                IconButton(onClick = { exoPlayer?.playWhenReady = false }) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.ic_pause),
-                        contentDescription = "",
-                        Modifier.size(50.dp)
-                    )
+                    // IconButton for Pause Action
+                    IconButton(onClick = { exoPlayer?.playWhenReady = false }) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_pause),
+                            contentDescription = "",
+                            Modifier.size(50.dp)
+                        )
+                    }
                 }
             }
         }
-
+    }
 }
+
 
 // For displaying preview in
 // the Android Studio IDE emulator

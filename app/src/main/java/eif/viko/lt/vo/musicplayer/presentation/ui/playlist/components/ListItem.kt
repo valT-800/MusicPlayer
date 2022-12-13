@@ -22,7 +22,7 @@ import eif.viko.lt.vo.musicplayer.domain.model.Track
 fun ListItem(modifier: Modifier = Modifier,
              items: List<Track>,
              itemTextStyle: TextStyle = TextStyle(fontSize = 15.sp),
-             itemTextColor: Color = Color(0xFFBAD9E7),
+             itemTextColor: Color = Color(0xFFE0F7FA),
              onItemClick: (Track) -> Unit) {
     LazyColumn(modifier) {
         items(items) { item ->
@@ -44,7 +44,7 @@ fun ListItem(modifier: Modifier = Modifier,
                     )
                     Spacer(modifier = Modifier.size(5.dp))
                     Text(
-                        text = item.artists?.get(0)!!.name,
+                        text = item.artists[0].name,
                         style = itemTextStyle,
                         color = itemTextColor,
                         modifier = Modifier.weight(1f)

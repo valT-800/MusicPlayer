@@ -28,9 +28,10 @@ fun SearchScreen (
 
     var track: Track? = null
     val items = viewModel.state.tracks
+    
     SearchView(textState)
 
-    var filteredItems: List<Track>
+    val filteredItems: List<Track>
     val searchedText = textState.value.text
     val filterPattern = searchedText.lowercase(Locale.getDefault())
     filteredItems = if (searchedText.isEmpty()) {
@@ -39,7 +40,7 @@ fun SearchScreen (
         val resultList = ArrayList<Track>()
         for (item in items) {
             if (item.name.lowercase(Locale.getDefault()).contains(filterPattern)
-                || item.artists?.get(0)?.name?.lowercase(Locale.getDefault())!!.contains(filterPattern)
+                || item.artists[0].name.lowercase(Locale.getDefault())!!.contains(filterPattern)
             ) {
                 resultList.add(item)
             }
@@ -49,17 +50,15 @@ fun SearchScreen (
     ListItem(
         items = filteredItems,
         onItemClick = {
-            val encodedImageUrl = URLEncoder.encode(it.album?.images!![0].url , StandardCharsets.UTF_8.toString())
-            navController.navigate(Route.SONG_SCREEN+"/${it.name}/${it.preview_url}/$encodedImageUrl/${it.artists?.get(0)?.name}")
+            val encodedImageUrl = URLEncoder.encode(it.album.images[0].url , StandardCharsets.UTF_8.toString())
+            val encodedSongUrl = URLEncoder.encode(it.preview_url , StandardCharsets.UTF_8.toString())
+            navController.navigate(Route.SONG_SCREEN+"/${it.name}/$encodedSongUrl/$encodedImageUrl/${it.artists[0].name}")
             track = it
         }
     )
 
-    if (track!= null) {
-
-        Player(
-            title = track?.name,
-            songUrl = track?.preview_url
-        )
-    }
+    Player(
+        name = track!!.name,
+        songUrl = track!!.preview_url
+    )
 }

@@ -95,7 +95,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     MyAppNavHost(
                         Modifier.padding(it),
-                        navController = navController,
+                        navController = navController
                     )
                 }
 

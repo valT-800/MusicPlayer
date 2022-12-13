@@ -8,9 +8,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.spotify.protocol.types.Artist
 import eif.viko.lt.vo.musicplayer.domain.util.Route
-import eif.viko.lt.vo.musicplayer.presentation.ui.PlaylistScreen
+import eif.viko.lt.vo.musicplayer.presentation.ui.playlist.PlaylistScreen
 import eif.viko.lt.vo.musicplayer.presentation.ui.playlist.SongScreen
 import eif.viko.lt.vo.musicplayer.presentation.ui.search.SearchScreen
 
@@ -38,8 +37,8 @@ fun MyAppNavHost (
             )){backStackEntry ->
                 SongScreen(
                     navController = navController,
-                    name = backStackEntry.arguments?.getString("title"),
-                    preview_url = backStackEntry.arguments?.getString("songUrl"),
+                    name = backStackEntry.arguments?.getString("name"),
+                    preview_url = backStackEntry.arguments?.getString("preview_url"),
                     imageUrl = backStackEntry.arguments?.getString("imageUrl"),
                     artist_name = backStackEntry.arguments?.getString("artist_name")
                 )

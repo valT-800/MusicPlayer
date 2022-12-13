@@ -1,4 +1,4 @@
-package eif.viko.lt.vo.musicplayer.presentation.ui
+package eif.viko.lt.vo.musicplayer.presentation.ui.playlist
 
 
 import androidx.compose.material.rememberScaffoldState
@@ -24,26 +24,20 @@ fun PlaylistScreen(
     val state = viewModel.state.tracks
     //var playerState = viewModel.state.exoPlayer
     var track: Track? = null
-
     ListItem(
         items = state,
         onItemClick = {
-            val encodedImageUrl = URLEncoder.encode(it.album?.images?.get(0)?.url , StandardCharsets.UTF_8.toString())
-            navController.navigate(Route.SONG_SCREEN+"/${it.name}/${it.preview_url}/$encodedImageUrl/${it.artists?.get(0)?.name}")
+            val encodedImageUrl = URLEncoder.encode(it.album.images[0].url , StandardCharsets.UTF_8.toString())
+            val encodedSongUrl = URLEncoder.encode(it.preview_url , StandardCharsets.UTF_8.toString())
+            navController.navigate(Route.SONG_SCREEN+"/${it.name}/$encodedSongUrl/$encodedImageUrl/${it.artists[0].name}")
             track = it
-            /*playerState?.setMediaItem(MediaItem.Builder().setUri(it.songUrl).setTag(it.title).build())
-            playerState?.prepare()
-            playerState?.play()
-            playerState?.playWhenReady = true*/
         }
     )
-    if (track!= null) {
 
-        Player(//exoPlayer = playerState,
-            title = track?.name,
-            songUrl = track?.preview_url
-        )
-    }
+    Player(//exoPlayer = playerState,
+        name = track?.name,
+        songUrl = track?.preview_url
+    )
 
 }
 
