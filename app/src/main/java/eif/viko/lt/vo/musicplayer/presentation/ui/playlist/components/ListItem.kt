@@ -6,15 +6,14 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import eif.viko.lt.vo.musicplayer.R
-import eif.viko.lt.vo.musicplayer.domain.model.Item
 import eif.viko.lt.vo.musicplayer.domain.model.Track
 
 
@@ -29,27 +28,25 @@ fun ListItem(modifier: Modifier = Modifier,
             Row(modifier = Modifier
                 .fillMaxWidth()
                 .clickable { onItemClick(item) }
-                .padding(30.dp)
+                .padding(30.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween,
             ) {
-                Icon(painter = painterResource(id = R.drawable.ic_play),
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_play),
                     contentDescription = "",
-                modifier = Modifier.size(30.dp))
-                Spacer(modifier = Modifier.width(10.dp))
-                Column (Modifier.fillMaxSize()){
-                    Text(
-                        text = item.name,
-                        style = itemTextStyle,
-                        color = itemTextColor,
-                        modifier = Modifier.weight(1f)
-                    )
-                    Spacer(modifier = Modifier.size(5.dp))
-                    Text(
-                        text = item.artists[0].name,
-                        style = itemTextStyle,
-                        color = itemTextColor,
-                        modifier = Modifier.weight(1f)
-                        )
-                }
+                    modifier = Modifier.size(30.dp)
+                )
+                Spacer(modifier = Modifier.width(15.dp))
+                Text(
+                    text = item.name,
+                    modifier = Modifier.weight(1f)
+                )
+                //Spacer(modifier = Modifier.size(5.dp))
+                Text(
+                    text = item.artists[0].name,
+                    modifier = Modifier.weight(1f)
+                )
 
             }
             Divider()

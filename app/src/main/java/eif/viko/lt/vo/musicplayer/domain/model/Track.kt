@@ -10,7 +10,6 @@ data class Track (
     val album: Album = Album("", emptyList(),""),
     val artists: List<Artist> = emptyList(),
     val duration_ms: Long = 0,
-    val href: String = "",
     val id: String ="",
     val name: String = "",
     val preview_url: String = ""

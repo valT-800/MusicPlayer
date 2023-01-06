@@ -9,7 +9,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import eif.viko.lt.vo.musicplayer.data.repository.DatabaseRepositoryImpl
 import eif.viko.lt.vo.musicplayer.domain.repository.DatabaseRepository
-import eif.viko.lt.vo.musicplayer.domain.use_case.database.GetTracksUseCase
+import eif.viko.lt.vo.musicplayer.domain.use_case.database.UseCases
+import eif.viko.lt.vo.musicplayer.domain.use_case.database.*
 import javax.inject.Singleton
 
 @Module
@@ -29,10 +30,25 @@ object DatabaseModule {
         return DatabaseRepositoryImpl(db)
     }
 
+
     @Provides
     @Singleton
-    fun provideTracksUseCase(repository: DatabaseRepository): GetTracksUseCase {
-        return GetTracksUseCase(repository)
-    }
+    fun provideUseCases(
+        repository: DatabaseRepository
+    ) = UseCases(
+        getPlaylists = GetPlaylistsUseCase(repository),
+        getMyPlaylists = GetMyPlaylistsUseCase(repository),
+        addPlaylist = AddPlaylistUseCase(repository),
+        deletePlaylist = DeletePlaylistUseCase(repository),
+        getMyPlaylistTracks = GetMyPlaylistTracksUseCase(repository),
+        getPlaylistTracks = GetPlaylistTracksUseCases(repository),
+        getFavoriteTracks = GetFavoriteTracksUseCase(repository),
+        getAllTracks = GetAllTracksUseCase(repository),
+        addTrackToFavorites = AddTrackToFavoritesUseCase(repository),
+        addTrackToPlaylist = AddTrackToPlaylistUseCase(repository),
+        removeTrackFromFavorites = RemoveTrackFromFavoritesUseCase(repository),
+        removeTrackFromPlaylist = RemoveTrackFromPlaylistUseCase(repository)
+
+    )
 
 }

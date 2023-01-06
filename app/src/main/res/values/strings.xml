@@ -1,5 +1,11 @@
 <resources>
-    <string name="app_name">MusicPlayer</string>
-    <string name="CLIENT_ID">c56af55b9a38455684e6e706dbbcdb0a</string>
-    <string name="REDIRECT_URI">http://localhost:8080/callback</string>
+    <string name="app_name">Zone</string>
+    <string name = "library_name">Your library</string>
+    <string name = "home_name">Home</string>
+    <string name="favorites_name">Your favorite tracks</string>
+    <string name="add_playlist_name">Add playlist name</string>
+    <string name="playlist_name">playlist name</string>
+    <string name="add">add</string>
+    <string name="close">close</string>
+    <string name="choose_playlist">choose playlist</string>
 </resources>

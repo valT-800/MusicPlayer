@@ -1,64 +1,56 @@
 package eif.viko.lt.vo.musicplayer.presentation.ui.search
 
+import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import eif.viko.lt.vo.musicplayer.domain.model.Item
+import com.google.firestore.admin.v1.Index
 import eif.viko.lt.vo.musicplayer.domain.model.Track
-import eif.viko.lt.vo.musicplayer.domain.util.Route
+import eif.viko.lt.vo.musicplayer.domain.repository.Tracks
+import eif.viko.lt.vo.musicplayer.presentation.ui.home.playlist.components.AddFavoriteTrack
+import eif.viko.lt.vo.musicplayer.presentation.ui.home.playlist.components.AddTrackToPlaylist
+import eif.viko.lt.vo.musicplayer.presentation.ui.home.playlist.components.AddTrackToPlaylistAlertDialog
+import eif.viko.lt.vo.musicplayer.presentation.ui.library.playlist.components.RemoveFavoriteTrack
 import eif.viko.lt.vo.musicplayer.presentation.ui.playlist.PlaylistViewModel
-import eif.viko.lt.vo.musicplayer.presentation.ui.playlist.components.ListItem
-import eif.viko.lt.vo.musicplayer.presentation.ui.playlist.components.Player
-import eif.viko.lt.vo.musicplayer.presentation.ui.search.components.SearchView
-import java.net.URLEncoder
-import java.nio.charset.StandardCharsets
-import java.util.*
-import kotlin.collections.ArrayList
+import eif.viko.lt.vo.musicplayer.presentation.ui.search.components.Search
+import eif.viko.lt.vo.musicplayer.presentation.ui.search.components.SearchContent
 
 @Composable
 fun SearchScreen (
     navController: NavController,
-    viewModel: PlaylistViewModel = hiltViewModel(),
-
+    showPlayer: () -> Unit,
+    playSelectedTrack: (index: Int, track: Track) -> Unit,
+    initializePlayer: (tracks: Tracks) -> Unit,
+    viewModel: PlaylistViewModel = hiltViewModel()
 ){
-    val textState = remember { mutableStateOf(TextFieldValue("")) }
+    Scaffold (
+        content = { padding ->
+            Search(
+                searchContent = { tracks ->
+                    SearchContent(
+                        navController = navController,
+                        padding = padding,
+                        tracks = tracks,
+                        showPlayer={showPlayer()},
+                        openDialog = {track -> viewModel.openDialog(track)},
+                        playSelectedTrack = { index, track -> playSelectedTrack(index, track)},
+                        initializePlayer = { filteredTracks -> initializePlayer(filteredTracks)},
+                        removeFavoriteTrack = { id -> viewModel.removeFavoriteTrack(id) },
+                        addFavoriteTrack = {track -> viewModel.addFavoriteTrack(track)},
+                    )
 
-    var track: Track? = null
-    val items = viewModel.state.tracks
-    
-    SearchView(textState)
-
-    val filteredItems: List<Track>
-    val searchedText = textState.value.text
-    val filterPattern = searchedText.lowercase(Locale.getDefault())
-    filteredItems = if (searchedText.isEmpty()) {
-        items
-    } else {
-        val resultList = ArrayList<Track>()
-        for (item in items) {
-            if (item.name.lowercase(Locale.getDefault()).contains(filterPattern)
-                || item.artists[0].name.lowercase(Locale.getDefault())!!.contains(filterPattern)
-            ) {
-                resultList.add(item)
-            }
-        }
-        resultList
-    }
-    ListItem(
-        items = filteredItems,
-        onItemClick = {
-            val encodedImageUrl = URLEncoder.encode(it.album.images[0].url , StandardCharsets.UTF_8.toString())
-            val encodedSongUrl = URLEncoder.encode(it.preview_url , StandardCharsets.UTF_8.toString())
-            navController.navigate(Route.SONG_SCREEN+"/${it.name}/$encodedSongUrl/$encodedImageUrl/${it.artists[0].name}")
-            track = it
+                }
+            )
+            AddTrackToPlaylistAlertDialog(
+                openDialog = viewModel.openDialog,
+                closeDialog = { viewModel.closeDialog() },
+                addTrackToPlaylist = { id, track -> viewModel.addTrack(id, track)},
+                track = viewModel.trackToPlaylist
+            )
         }
     )
+    AddFavoriteTrack()
+    AddTrackToPlaylist()
+    RemoveFavoriteTrack()
 
-    Player(
-        name = track!!.name,
-        songUrl = track!!.preview_url
-    )
 }

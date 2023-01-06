@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Zone</string>
+    <string name = "library_name">Biblioteka</string>
+    <string name = "home_name">Pagrindinis langas</string>
+    <string name="favorites_name">Mylimiausios kompozicijos</string>
+    <string name="add_playlist_name">Sukurkite naują sąrašą</string>
+    <string name="playlist_name">sąrašo pavadinimas</string>
+    <string name="add">pridėti</string>
+    <string name="close">uždaryti</string>
+    <string name="choose_playlist">išsirinkite sąrašą</string>
+</resources>
