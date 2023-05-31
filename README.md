@@ -7,9 +7,9 @@ Has similar UI design and functionability as Spotify.
 
 The UI is simple and very user friendly. 
 At first was made bottom navigation, from where user can navigate to three different main pages:
-  Search
-  Home
-  Library
+  Search,
+  Home,
+  Library.
   
 In Search page user can search tracks from there names or from track artists names.
 
