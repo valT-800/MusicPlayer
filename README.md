@@ -1,7 +1,7 @@
 # Music player - Zone
 
-Mobile Android Application created on Android Studio with Koltkin language: Hilt, Dagger, Coroutines, Android Jetpack Compose libraries.
-For storring data was used Firebase Realtime Database. 
+Mobile Android Application created on Android Studio with Koltlin language: Hilt, Dagger, Coroutines, Android Jetpack Compose libraries.
+For storing data was used Firebase Realtime Database. 
 
 Has similar UI design and functionability as Spotify.
 
