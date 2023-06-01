@@ -3,7 +3,7 @@
 Mobile Android Application created on Android Studio with Koltlin language: Hilt, Dagger, Coroutines, Android Jetpack Compose libraries.
 For storing data was used Firebase Realtime Database. 
 
-Has similar UI design and functionability as Spotify.
+Has similar UI design and functionality as Spotify.
 
 The UI is simple and very user friendly. 
 At first was made bottom navigation, from where user can navigate to three different main pages:
